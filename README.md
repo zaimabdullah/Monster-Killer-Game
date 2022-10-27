@@ -1,2 +1,2 @@
 # Monster-Killer-Game
-Simple HTML game using Vanilla JavaScript
+Simple HTML game with Vanilla JavaScript
