@@ -15,6 +15,7 @@ const enteredValue = prompt('Maximum life for you and the monster.', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
+let lastLoggedEntry;
 
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
   chosenMaxLife = 100;
@@ -176,13 +177,40 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
+  for (let i = 0; i < 3; i++) {
+    console.log('-------------');  
+  }
   // for (let i = 0; i < battleLog.length; i++) {
   //   console.log(battleLog[i]);
   // }
-  for(const logEntry of battleLog) { // for-of loop
-    console.log(`#${i}`);
-    for (const key in logEntry) { // for-in loop
-      console.log(`${key} => ${logEntry[key]}`);
+  // for (let i = 0; i < 5; i++) {
+  //   if (i === 3) {
+  //     continue; number 3 will be skip from display
+  //   }
+  //   console.log(i);
+  // }
+  // let j = 0;
+  // outerWhile: do { use of Labeled Statements to stop outer loop in nested loop
+  //   console.log('Outer', j);
+  //   innerFor: for (let k = 0; k < 5; k++) {
+  //     if (k === 3) {
+  //       break outerWhile;
+  //     }
+  //     console.log('Inner', k);
+  //   }
+  //   j++;
+  // } while (j < 3);
+
+  for (const logEntry of battleLog) {
+    // for-of loop
+    if (!lastLoggedEntry && lastLoggedEntry !== 0 || lastLoggedEntry < i) {
+      console.log(`#${i}`);
+      for (const key in logEntry) {
+        // for-in loop
+        console.log(`${key} => ${logEntry[key]}`);
+      }
+      lastLoggedEntry = i;
+      break; // can be used to stop the loop
     }
     i++;
   }
